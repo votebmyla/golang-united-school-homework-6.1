@@ -19,6 +19,8 @@ func NewBox(shapesCapacity int) *box {
 	}
 }
 
+var err1 = errors.New("the index is out of range")
+
 // AddShape adds shape to the box
 // returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
@@ -39,7 +41,7 @@ func (b *box) GetByIndex(i int) (Shape, error) {
 			}
 		}
 	}
-	return nil, errors.New("index is out of range")
+	return nil, err1
 }
 
 // ExtractByIndex allows getting shape by index and removes this shape from the list.
@@ -52,7 +54,7 @@ func (b *box) ExtractByIndex(i int) (Shape, error) {
 		b.shapes = append(b.shapes[:i], b.shapes[i+1:]...)
 		return sh, nil
 	}
-	return nil, errors.New("index is out of range")
+	return nil, err1
 }
 
 // ReplaceByIndex allows replacing shape by index and returns removed shape.
@@ -65,7 +67,7 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 		b.shapes[i] = shape
 		return sh, nil
 	}
-	return nil, errors.New("index is out of range")
+	return nil, err1
 }
 
 // SumPerimeter provides sum perimeter of all shapes in the list.
