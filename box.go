@@ -22,10 +22,11 @@ func NewBox(shapesCapacity int) *box {
 var err1 = errors.New("the index is out of range")
 
 // AddShape adds shape to the box
-// returns the error in case it goes out of the shapesCapacity range. b.shapesCapacity > 0 &&
+// returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
-	if len(b.shapes) < b.shapesCapacity {
+	if b.shapesCapacity > 0 && b.shapesCapacity > len(b.shapes) {
 		b.shapes = append(b.shapes, shape)
+		return nil
 	}
 	return errors.New("out of the shapesCapacity range")
 }
