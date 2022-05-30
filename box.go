@@ -8,8 +8,8 @@ import (
 
 // box contains list of shapes and able to perform operations on them
 type box struct {
-	shapes         []Shape
-	shapesCapacity int // Maximum quantity of shapes that can be inside the box.
+	shapes         []Shape // 4
+	shapesCapacity int     // 5 Maximum quantity of shapes that can be inside the box.
 }
 
 // NewBox creates new instance of box
@@ -22,9 +22,9 @@ func NewBox(shapesCapacity int) *box {
 var err1 = errors.New("the index is out of range")
 
 // AddShape adds shape to the box
-// returns the error in case it goes out of the shapesCapacity range.
+// returns the error in case it goes out of the shapesCapacity range. b.shapesCapacity > 0 &&
 func (b *box) AddShape(shape Shape) error {
-	if b.shapesCapacity > 0 && len(b.shapes) < b.shapesCapacity {
+	if len(b.shapes) < b.shapesCapacity {
 		b.shapes = append(b.shapes, shape)
 	}
 	return errors.New("out of the shapesCapacity range")
